@@ -34,25 +34,9 @@
 
 <script>
 export default {
-  data () {
-    return {
-      meetups: [
-        {
-          imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-s/0e/9a/e3/1d/freedom-tower.jpg',
-          id: 'ffsdfsdfsd',
-          title: 'Meetup in New York'
-        },
-        {
-          imageUrl: 'https://static.wixstatic.com/media/673a1d_c7fe5bb5f4d5437295629e84efb4cc58~mv2.jpg',
-          id: 'ffsdfsdffdsfdssd',
-          title: 'California'
-        },
-        {
-          imageUrl: 'https://www.westjet.com/assets/wj-web/images/regions/alberta-737x426.jpg',
-          id: 'ffsdfsdffdffdsfdssd',
-          title: 'Canada'
-        }
-      ]
+  computed: {
+    meetups () {
+      return this.$store.getters.featuredMeetups
     }
   },
   methods: {
