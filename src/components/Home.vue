@@ -9,7 +9,7 @@
       </v-flex>
     </v-layout>
     <v-layout>
-      <v-flex cs12 class="text-xs-center">
+      <v-flex xs12 class="text-xs-center">
         <v-progress-circular
           indeterminate
           class="primary--text"

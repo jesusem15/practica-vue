@@ -56,7 +56,7 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    loadMeetups ({commit}) {
+    loadMeetups ({ commit }) {
       commit('setLoading', true)
       firebase.database().ref('meetups').once('value')
         .then((data) => {
@@ -82,7 +82,7 @@ export const store = new Vuex.Store({
           }
         )
     },
-    createMeetup ({commit, getters}, payload) {
+    createMeetup ({ commit, getters }, payload) {
       const meetup = {
         title: payload.title,
         location: payload.location,
@@ -104,7 +104,7 @@ export const store = new Vuex.Store({
         })
         .then(fileData => {
           imageUrl = fileData.metadata.downloadURLs[0]
-          return firebase.database().ref('meetups').child(key).update({imageUrl: imageUrl})
+          return firebase.database().ref('meetups').child(key).update({ imageUrl: imageUrl })
         })
         .then(() => {
           commit('createMeetup', {
@@ -116,9 +116,8 @@ export const store = new Vuex.Store({
         .catch((error) => {
           console.log(error)
         })
-      // Reach out to firebase and store it
     },
-    signUserUp ({commit}, payload) {
+    signUserUp ({ commit }, payload) {
       commit('setLoading', true)
       commit('clearError')
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
