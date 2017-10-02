@@ -1,15 +1,15 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12 xs12 sm6 offset-sm3>
-        <h4 class="primary--text">Create a new meetup</h4>
+      <v-flex xs12 sm12 md6 offset-md3>
+        <h4 class="primary--text text-xs-center">Create a new meetup</h4>
       </v-flex>
     </v-layout>
     <v-layout row>
       <v-flex xs12>
         <form @submit.prevent="onCreateMeetup">
           <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
+            <v-flex xs12 sm12 md6 offset-md3>
               <v-text-field
                 name="title"
                 label="Title"
@@ -21,7 +21,7 @@
             </v-flex>
           </v-layout>
           <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
+            <v-flex xs12 sm12 md6 offset-md3>
               <v-text-field
                 name="location"
                 label="Location"
@@ -33,24 +33,24 @@
             </v-flex>
           </v-layout>
           <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
-                name="imageUrl"
-                label="Image URL"
-                id="image-url"
-                v-model="imageUrl"
-                required
+            <v-flex xs12 sm12 md6 offset-md3>
+              <v-btn raised class="primary" @click="onPickFile">Upload Image</v-btn>
+              <input
+                type="file"
+                style="display: none"
+                ref="fileInput"
+                accept="image/*"
+                @change="onFilePicked"
               >
-              </v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
+            <v-flex xs12 sm12 md6 offset-md3>
               <img :src="imageUrl" height="150px">
             </v-flex>
           </v-layout>
           <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
+            <v-flex xs12 sm12 md6 offset-md3>
               <v-text-field
                 name="description"
                 label="Description"
@@ -63,22 +63,22 @@
             </v-flex>
           </v-layout>
           <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <h4>Choose a date & time</h4>
+            <v-flex xs12 sm12 md6 offset-md3>
+              <h5 class="primary--text text-xs-center">Choose a date & time</h5>
             </v-flex>
           </v-layout>
           <v-layout row class="mb-2">
-            <v-flex xs12 sm6 offset-sm3>
+            <v-flex xs12 sm12 md6 offset-md3>
               <v-date-picker v-model="date"></v-date-picker>
             </v-flex>
           </v-layout>
           <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
+            <v-flex xs12 sm12 md6 offset-md3>
               <v-time-picker v-model="time" format="24hr"></v-time-picker>
             </v-flex>
           </v-layout>
           <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
+            <v-flex xs12 sm12 md6 offset-md3 text-xs-right>
               <v-btn
                 class="primary"
                 :disabled="!formIsValid"
@@ -103,7 +103,8 @@
         imageUrl: '',
         description: '',
         date: new Date(),
-        time: new Date()
+        time: new Date(),
+        image: null
       }
     },
     computed: {
@@ -136,11 +137,27 @@
           title: this.title,
           description: this.description,
           location: this.location,
-          imageUrl: this.imageUrl,
+          image: this.image,
           date: this.submittableDateTime
         }
         this.$store.dispatch('createMeetup', meetupData)
         this.$router.push('/meetups')
+      },
+      onPickFile () {
+        this.$refs.fileInput.click()
+      },
+      onFilePicked (event) {
+        const files = event.target.files
+        let fileName = files[0].name
+        if (fileName.lastIndexOf('.') <= 0) {
+          return alert('Please add a valid file')
+        }
+        const fileReader = new FileReader()
+        fileReader.addEventListener('load', () => {
+          this.imageUrl = fileReader.result
+        })
+        fileReader.readAsDataURL(files[0])
+        this.image = files[0]
       }
     }
   }
