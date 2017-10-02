@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <v-layout>
+      <v-flex xs12 sm6 offset-sm3>
+        <h4 class="primary--text text-xs-center">Login</h4>
+      </v-flex>
+    </v-layout>
     <v-layout row v-if="error">
       <v-flex xs12 sm6 offset-sm3>
         <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
