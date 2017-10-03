@@ -103,7 +103,6 @@
     },
     methods: {
       onSignup () {
-        // Vuex
         this.$store.dispatch('signUserUp', { email: this.email, password: this.password })
       },
       onDismissed () {
