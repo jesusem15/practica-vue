@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout row wrap>
-      <v-flex xs12 sm6 order-md2 class="text-xs-center text-sm-right">
+      <v-flex xs12 sm6 class="text-xs-right">
         <v-btn
           large
           router
@@ -12,7 +12,7 @@
         Explore meetups
         </v-btn>
       </v-flex>
-      <v-flex xs12 sm6 class="text-xs-center text-sm-left">
+      <v-flex xs12 sm6 class="text-xs-left">
         <v-btn
           large
           router
