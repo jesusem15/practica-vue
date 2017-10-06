@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-layout>
       <v-flex xs12 sm12 md6 offset-md3>
         <h4 class="primary--text text-xs-center">Sign up</h4>

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-layout>
       <v-flex xs12 sm6 offset-sm3>
         <h4 class="primary--text text-xs-center">Login</h4>
