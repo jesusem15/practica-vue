@@ -82,7 +82,8 @@
         return menuItems
       },
       userIsAuthenticated () {
-        return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+        const { getters: { user } } = this.$store
+        return user !== null && user !== undefined
       }
     },
     methods: {
